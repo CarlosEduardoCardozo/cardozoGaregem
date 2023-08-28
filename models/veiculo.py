@@ -3,6 +3,7 @@ from django.db import models
 from models.cor import Cor
 from models.modelo import Modelo
 from uploader.models import Image
+from models.acessorio import Acessorio
 
 
 class Veiculo(models.Model):
@@ -14,7 +15,7 @@ class Veiculo(models.Model):
         Modelo, on_delete=models.PROTECT, related_name="veiculos"
     )
     ano = models.IntegerField(null=True, blank=True)
-    descricao = models.CharField(max_length=255, null=True, blank=True)
+    descricao = models.ManyToManyField(Acessorio)
     preco = models.DecimalField(
         decimal_places=3, max_digits=6, null=True, blank=True
     )
